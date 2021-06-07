@@ -1,10 +1,10 @@
-#### rename columns 
+### rename columns 
 
 dura = pd.read_csv('enroll_numerical.csv')
 dura = dura.drop(dura.columns[0],axis=1)
 dura.rename({'duration': 'Duration'},axis=1,inplace=True)
 
-#### remove outliers
+### remove outliers
 
 jxzb.drop(jxzb[jxzb['Journey_Pre Script Journey']==1].index, inplace=True)
 jxzb.drop('Journey_Pre Script Journey',axis=1,inplace=True)
@@ -14,19 +14,19 @@ jxzb.shape
 df = jxzb
 df.loc[df['no_records']==1,'EnrolmentMethod'].hist()
 
-#### create binary feature according to ranges
+### create binary feature according to ranges
 
 df['topic5_cat']=df['topic5_existence']
 df.loc[df['topic5_existence']>=1,'topic5_cat']='yes'
 df.loc[df['topic5_existence']==0,'topic5_cat']='no'
 
-#### calculate the correlation between columns
+### calculate the correlation between columns
 
 coscore=abs(df[df.columns[1:]].corr()['topic5_existence'][:])
 
 coscore.loc[coscore>0.3]
 
-#### create contingency table for columns and do fisher's test
+### create contingency table for columns and do fisher's test
 
 contigency= pd.crosstab(df1['topic5_cat'], df1['CurrentStatus']) 
 
@@ -37,13 +37,13 @@ from scipy.stats import fisher_exact
 oddsratio, pvalue = fisher_exact(contigency,'less')
 pvalue
 
-#### count the value 
+### count the value 
 
 df.groupby('sentiment_cat').count()
 df.groupby('topic5_cat').count()
 df.loc[df['topic5_cat']=='hyes',].groupby('sentiment_cat').count()
 
-#### process datetime
+### process datetime
 
 1. two ways to transform time format
 
