@@ -9,3 +9,9 @@ bp = sb.boxplot(x=dates_topic5['CurrentStatus'], y=dates_topic5['DaysToStart'],
                  hue=dates_topic5['CurrentStatus'], data=dates_topic5, palette="Set2", ax=ax2)
 t = f.suptitle('Visualizing Pt words', fontsize=20)
 
+
+### just scatter 
+
+facet = sb.lmplot(data=dates_topic5, x='DaysToEnd', y='DaysToStart', hue='CurrentStatus', 
+                   fit_reg=False, legend=True, legend_out=True)
+                   
