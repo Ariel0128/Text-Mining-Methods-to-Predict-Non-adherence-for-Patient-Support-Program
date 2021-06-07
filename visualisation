@@ -1,0 +1,11 @@
+### boxplot and scatter  
+
+good for checking the difference between groups
+
+f, (ax1, ax2) = plt.subplots(1, 2, figsize=(14,5))
+sp = sb.stripplot(x=dates_topic5['CurrentStatus'], y=dates_topic5['DaysToStart'], 
+                   hue=dates_topic5['CurrentStatus'], data=dates_topic5, ax=ax1)
+bp = sb.boxplot(x=dates_topic5['CurrentStatus'], y=dates_topic5['DaysToStart'], 
+                 hue=dates_topic5['CurrentStatus'], data=dates_topic5, palette="Set2", ax=ax2)
+t = f.suptitle('Visualizing Pt words', fontsize=20)
+
