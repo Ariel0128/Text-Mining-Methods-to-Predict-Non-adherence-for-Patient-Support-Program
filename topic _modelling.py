@@ -37,6 +37,11 @@ tfidf_features = tfidf_vector.get_feature_names()
 tfidf_matrix = pd.DataFrame(tfidf.toarray(), columns = list(tfidf_features))
 tfidf_matrix.shape
 
+# change n_gram : give a range: (2,2) only bigram
+
+tfidf_vector = TfidfVectorizer(max_df=0.9, min_df=25, max_features=5000, use_idf=True, ngram_range=(1,2))
+
+
 # NMF
 # Produce 20 topics, each topic has 15 key words
 
