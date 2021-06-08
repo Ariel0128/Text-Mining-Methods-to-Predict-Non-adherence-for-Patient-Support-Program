@@ -4,6 +4,12 @@ dura = pd.read_csv('enroll_numerical.csv')
 dura = dura.drop(dura.columns[0],axis=1)
 dura.rename({'duration': 'Duration'},axis=1,inplace=True)
 
+### rename values
+
+newdf.replace('Plaque Psoriasis (PSO) High Touch Journey', 'PSO High',inplace=True)
+newdf.replace('Plaque Psoriasis (PSO) Low Touch Journey', 'PSO Low',inplace=True)
+newdf.replace('Pre Script Journey', 'Pre Script',inplace=True)
+
 ### remove outliers
 
 jxzb.drop(jxzb[jxzb['Journey_Pre Script Journey']==1].index, inplace=True)
@@ -60,3 +66,8 @@ dates['TreatmentStartDate'] = pd.to_datetime(dates['TreatmentStartDate'], format
 dates['DaysToEnd']=(dates['LatestStatusChange']-dates['CreateDate']).dt.days
 dates['DaysToStart']=(dates['CreateDate']-dates['TreatmentStartDate']).dt.days
 dates['DaysToStart_per']=dates['DaysToStart']/(dates['DaysToStart']+dates['DaysToEnd'])*100
+
+### calculate synonyms tfidf values
+
+df['sumofsurvey']=df['completed survey'].values+df['survey completed'].values+df['screener completed'].values+
+                  df['answered survey'].values+df['survey attended'].values+df['question answered'].values
