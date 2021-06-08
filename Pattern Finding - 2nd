@@ -4,6 +4,11 @@ dura = pd.read_csv('enroll_numerical.csv')
 dura = dura.drop(dura.columns[0],axis=1)
 dura.rename({'duration': 'Duration'},axis=1,inplace=True)
 
+### convert days into months
+
+df['duration']=df['duration']/30
+df.loc[df['duration']<0.2,'duration']=0.2
+
 ### rename values
 
 newdf.replace('Plaque Psoriasis (PSO) High Touch Journey', 'PSO High',inplace=True)
