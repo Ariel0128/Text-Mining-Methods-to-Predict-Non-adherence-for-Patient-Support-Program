@@ -83,6 +83,8 @@ df1 <- sqldf("select enroll.pmid, enroll.HalfDate, ptnote.[Note.Created.On], ptn
               from enroll
               left join ptnote on ptnote.pmid=enroll.pmid")
 df2 <- sqldf("select pmid, Description from df1 where HalfDate>[Note.Created.On]")
+
+# merge single note by pmid
 df3 <- sqldf("select pmid, group_concat(Description) as ptnote from df2 group by pmid")
 df4 <- sqldf("select enroll.pmid, df3.ptnote, enroll.CurrentStatus
                    from enroll
